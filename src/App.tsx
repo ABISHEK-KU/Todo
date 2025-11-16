@@ -2,14 +2,14 @@ import { BrowserRouter, Route, Routes } from "react-router";
 import "./App.css";
 import Login from "./view/Login";
 import ProtectedRoute from "./view/ProtectedRoute";
-import DashBoard from "./components/DashBoard";
+import {DashBoard} from "./view/DashBoard";
 import { ThemeProvider } from "./context/useTheme";
 import { store, persistor } from "./store/store";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import Layout from "./components/Layout";
-import { Profile } from "./components/Profile";
-import { Todo } from "./components/Todo";
+import { Profile } from "./view/Profile";
+import { Todo } from "./view/Todo";
 
 function App() {
   return (

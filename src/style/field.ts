@@ -47,3 +47,46 @@ export const Input = styled.input`
     cursor: not-allowed;
   }
 `;
+
+
+export const TodoSelect = styled.select<{$varient?:string}>`
+  width:150px;
+  height: 36px;
+  padding: 8px;
+  box-sizing: border-box;
+  border:1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  ${props => props.$varient && `
+  background-color:var(--${props.$varient||"background"});
+  &:hover {
+    background-color:var(--${props.$varient||"background"});
+    opacity: 0.5;
+  }
+  `}
+  
+  &:focus{
+    outline: none;
+  }
+
+`
+
+export const TodoOption = styled.option`
+  height: 36px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: start;
+  transition: background-color 0.2s;
+  background-color: var(--background);
+  color:var(--text-primary);
+
+`
+

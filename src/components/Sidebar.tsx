@@ -1,19 +1,25 @@
 import { SidebarContainer, SidebarItem } from "@/style/sidebar";
 import React from "react";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 
 const Sidebar: React.FC<NonNullable<unknown>> = () => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+
   const data = [
     { path: "/", title: "Dashboard" },
-    { path: "/profile", title: "Profile" },
     { path: "/todo", title: "Todo" },
+    { path: "/profile", title: "Profile" },
   ];
 
   return (
     <SidebarContainer>
       {data.map((item) => (
-        <SidebarItem onClick={() => navigate(item.path)} key={item.path}>
+        <SidebarItem
+          $active={item.path === pathname}
+          onClick={() => navigate(item.path)}
+          key={item.path}
+        >
           {item.title}
         </SidebarItem>
       ))}

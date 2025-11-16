@@ -1,24 +1,25 @@
+import { useTheme } from "@/context/useTheme";
 import { logout } from "@/reducer/authReducer";
-import { AppTitle, HeaderContainer, LogoutButton } from "@/style/header";
-import { CirclePower } from "lucide-react";
+import { AppTitle, HeaderContainer, IconGroup } from "@/style/header";
+import { CirclePower, Moon, Sun } from "lucide-react";
 import React from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
-const Header: React.FC<Props> = (props) => {
+const Header: React.FC<NonNullable<unknown>> = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const {theme,toggleTheme}=useTheme()
 
   const handleLogout = () => {
-    dispatch(logout(navigate));
+    dispatch(logout());
   };
 
   return (
     <HeaderContainer>
       <AppTitle>ToDo</AppTitle>
-      <LogoutButton title="logout" onClick={() => handleLogout()}>
-        <CirclePower />
-      </LogoutButton>
+      <IconGroup>
+        {theme==="dark"?<Sun color="var(--foreground)" onClick={()=>toggleTheme()}/>:<Moon color="var(--foreground)" onClick={()=>toggleTheme()}/>}
+        <CirclePower color="#ff4d4d" onClick={() => handleLogout()}/>
+      </IconGroup>
     </HeaderContainer>
   );
 };

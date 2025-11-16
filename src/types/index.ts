@@ -8,3 +8,18 @@ export interface AuthState {
   user: string | null;
   token: string | null;
 }
+
+export interface ProfileData {
+  userName: string,
+  email: string,
+  phone: string,
+  department: string
+}
+
+export interface TodoItem {
+  id: number,
+  userId: string,
+  title: string,
+  status: "Pending" | "OnProgress" | "Completed",
+  dueDate: string
+}

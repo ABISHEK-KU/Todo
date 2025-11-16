@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
-// Card Components
-export const Card = styled.div`
-  width: var(--card-width, 100%);
+export const Card = styled.div<{ $minWidth?: string }>`
   background-color: var(--background);
   color: var(--foreground);
   border: 1px solid var(--border);
@@ -12,12 +10,15 @@ export const Card = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
+  ${props => props.$minWidth && `
+  min-width: ${props.$minWidth};
+  `}
 `;
 
 export const CardHeader = styled.div`
-  display: grid;
-  grid-template-rows: auto auto;
-  align-items: start;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 8px;
   padding: 0 24px;
 `;
@@ -30,4 +31,8 @@ export const CardTitle = styled.h2`
 
 export const CardContent = styled.div`
   padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;

@@ -10,6 +10,8 @@
   --input: #dee2e6;
   --ring: #007bff;
   --destructive: #dc3545;
+  --text-primary:#000000;
+  --text-secondary:#ffffff;
 }
 
 .dark {
@@ -24,6 +26,8 @@
   --input: #333333;
   --ring: #bb86fc;
   --destructive: #cf6679;
+  --text-primary:#ffffff;
+  --text-secondary:#000000;
 }
 
 * {

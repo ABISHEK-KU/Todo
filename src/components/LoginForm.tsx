@@ -1,9 +1,11 @@
 import { PasswordField, EyeIcon } from "@/style/passwordField";
 import { Eye, EyeOff } from "lucide-react";
 import type { LoginData } from "@/types";
-import { LoginFormContainer, Button } from "@/style/login";
+import { HelperText, LoginFormContainer } from "@/style/login";
 import { Card, CardContent, CardHeader, CardTitle } from "@/style/card";
 import { Field, FieldGroup, FieldLabel, Input } from "@/style/field";
+import { Button } from "@/style/button";
+import { LoginErrorMessage } from "@/style/message";
 
 interface LoginFormProps {
   userData: LoginData;
@@ -11,6 +13,8 @@ interface LoginFormProps {
   setViewPassword: React.Dispatch<React.SetStateAction<boolean>>;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleLogin: (e: React.FormEvent<HTMLFormElement>) => void;
+  error?: string;
+  isLoading?: boolean;
 }
 
 export function LoginForm({
@@ -19,6 +23,8 @@ export function LoginForm({
   setViewPassword,
   handleChange,
   handleLogin,
+  error = "",
+  isLoading = false,
 }: LoginFormProps) {
   return (
     <LoginFormContainer>
@@ -28,16 +34,18 @@ export function LoginForm({
         </CardHeader>
         <CardContent>
           <form onSubmit={handleLogin}>
+            {error && <LoginErrorMessage>{error}</LoginErrorMessage>}
             <FieldGroup>
               <Field>
                 <FieldLabel htmlFor="userName">User Name</FieldLabel>
                 <Input
                   id="userName"
-                  type="userName"
+                  type="text"
                   name="userName"
                   value={userData?.userName}
                   placeholder="Enter your user name"
                   onChange={(e) => handleChange(e)}
+                  disabled={isLoading}
                 />
               </Field>
               <Field>
@@ -50,6 +58,7 @@ export function LoginForm({
                     type={viewPassword ? "text" : "password"}
                     value={userData?.password}
                     onChange={(e) => handleChange(e)}
+                    disabled={isLoading}
                   />
                   <EyeIcon>
                     {viewPassword ? (
@@ -61,10 +70,17 @@ export function LoginForm({
                 </PasswordField>
               </Field>
               <Field>
-                <Button type="submit">Login</Button>
+                <Button type="submit" disabled={isLoading}>
+                  {isLoading ? "Logging in..." : "Login"}
+                </Button>
               </Field>
             </FieldGroup>
           </form>
+          <HelperText>
+            Demo credentials: <br />
+            Username: <strong>abishekKumar</strong> <br />
+            Password: <strong>Innoppl@123</strong>
+          </HelperText>
         </CardContent>
       </Card>
     </LoginFormContainer>

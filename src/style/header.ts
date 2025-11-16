@@ -27,22 +27,9 @@ export const AppTitle = styled.h1`
   }
 `;
 
-export const LogoutButton = styled.button`
-  background: none;
-  border: none;
-  color: var(--text-primary);
-  font-size: 1rem;
-  cursor: pointer;
-  padding: 8px 16px;
-  border-radius: 100%;
-  transition: background-color 0.2s;
-
-  &:hover {
-    background-color: var(--button-hover-background);
-  }
-
-  @media (max-width: 600px) {
-    font-size: 0.875rem;
-    padding: 6px 12px;
-  }
-`;
+export const IconGroup=styled.div`
+display:flex;
+justify-content: center;
+align-items: center;
+gap: 10px;
+`

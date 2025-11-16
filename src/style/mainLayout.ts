@@ -25,8 +25,12 @@ export const MainLayout = styled.div`
 
 export const ContentArea = styled.main`
   grid-area: content;
-  padding: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  padding:50px;
   height: 100%;
+  position: relative;
   @media (max-width: 600px) {
     padding: 12px;
   }

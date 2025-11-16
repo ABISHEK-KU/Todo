@@ -18,12 +18,12 @@ const auth = createSlice({
       state.token = action.payload.token;
       localStorage.setItem("token", action.payload.token);
     },
-    logout: (state, action) => {
+    logout: (state) => {
       state.isAuthenticated = false;
       state.user = null;
       state.token = null;
       localStorage.removeItem("token");
-      action.payload("/login");
+      localStorage.removeItem("profileData");
     },
   },
 });
