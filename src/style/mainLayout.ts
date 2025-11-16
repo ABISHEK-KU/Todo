@@ -1,0 +1,33 @@
+import styled from "styled-components";
+
+export const MainLayout = styled.div`
+  display: grid;
+  grid-template-rows: 60px auto;
+  grid-template-columns: 250px auto;
+  grid-template-areas:
+    "header header"
+    "sidebar content";
+  height: 100vh;
+
+  @media (max-width: 800px) {
+    grid-template-columns: 200px auto;
+  }
+
+  @media (max-width: 600px) {
+    grid-template-rows: 50px auto;
+    grid-template-columns: auto;
+    grid-template-areas:
+      "header"
+      "sidebar"
+      "content";
+  }
+`;
+
+export const ContentArea = styled.main`
+  grid-area: content;
+  padding: 16px;
+  height: 100%;
+  @media (max-width: 600px) {
+    padding: 12px;
+  }
+`;
