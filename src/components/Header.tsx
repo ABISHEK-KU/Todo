@@ -1,13 +1,23 @@
 import { useTheme } from "@/context/useTheme";
 import { logout } from "@/reducer/authReducer";
-import { AppTitle, HeaderContainer, IconGroup } from "@/style/header";
-import { CirclePower, Moon, Sun } from "lucide-react";
+import {
+  AppTitle,
+  HeaderContainer,
+  IconGroup,
+  HamburgerButton,
+  MenuandAppTitleContainer,
+} from "@/style/header";
+import { CirclePower, Moon, Sun, Menu } from "lucide-react";
 import React from "react";
 import { useDispatch } from "react-redux";
 
-const Header: React.FC<NonNullable<unknown>> = () => {
+interface HeaderProps {
+  onMenuClick?: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
   const dispatch = useDispatch();
-  const {theme,toggleTheme}=useTheme()
+  const { theme, toggleTheme } = useTheme();
 
   const handleLogout = () => {
     dispatch(logout());
@@ -15,10 +25,19 @@ const Header: React.FC<NonNullable<unknown>> = () => {
 
   return (
     <HeaderContainer>
-      <AppTitle>ToDo</AppTitle>
+      <MenuandAppTitleContainer>
+        <HamburgerButton aria-label="Open menu" onClick={onMenuClick}>
+          <Menu size={20} />
+        </HamburgerButton>
+        <AppTitle>ToDo</AppTitle>
+      </MenuandAppTitleContainer>
       <IconGroup>
-        {theme==="dark"?<Sun color="var(--foreground)" onClick={()=>toggleTheme()}/>:<Moon color="var(--foreground)" onClick={()=>toggleTheme()}/>}
-        <CirclePower color="#ff4d4d" onClick={() => handleLogout()}/>
+        {theme === "dark" ? (
+          <Sun color="var(--foreground)" onClick={() => toggleTheme()} />
+        ) : (
+          <Moon color="var(--foreground)" onClick={() => toggleTheme()} />
+        )}
+        <CirclePower color="#ff4d4d" onClick={() => handleLogout()} />
       </IconGroup>
     </HeaderContainer>
   );

@@ -1,73 +1,138 @@
-# React + TypeScript + Vite
+# innoppl-todo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A lightweight **React + TypeScript** sample application built with **Vite**, showcasing:
 
-Currently, two official plugins are available:
+- React 19 + TypeScript
+- Redux Toolkit state management
+- styled-components for UI primitives
+- Local profile persistence using `localStorage`
+- Todo list & dashboard pages
+- Clean project structure with reusable components
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This repository serves as a starter template for small internal tools, demos, or training projects that need quick authentication, profile management, and a basic dashboard/todo UI.
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Vite — lightning-fast dev server & build pipeline
+- React 19 with TypeScript
+- Redux Toolkit — predictable and scalable state management
+- styled-components — customizable UI primitives
+- localStorage — lightweight persistence for profile data
 
-## Expanding the ESLint configuration
+## Project Structure
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+src/
+│── App.tsx                # Routes + main layout
+│── main.tsx               # App entry point
+│
+│── store/
+│     └── store.ts         # Redux store + RootState/AppDispatch types
+│
+│── reducer/               # Redux slices
+│     ├── authReducer.ts
+│     ├── profileReducer.ts
+│     └── todoReducer.ts
+│
+│── view/                  # Page components
+│     ├── Login.tsx
+│     ├── DashBoard.tsx
+│     ├── Profile.tsx
+│     └── Todo.tsx
+│
+│── components/            # Shared UI components (Header, Sidebar, Layout)
+│
+│── style/                 # styled-components primitives & shared styles
+│── types/                 # Shared TypeScript types
+│
+public/                    # Static assets
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Requirements
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Node.js 18+ (recommended)
+- npm / pnpm / yarn
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Getting Started
+
+### Install dependencies
+
+```bash
+npm install
 ```
+
+### Run the development server
+
+```bash
+npm run dev
+```
+
+### Build for production
+
+```bash
+npm run build
+```
+
+### Preview production build
+
+```bash
+npm run preview
+```
+
+### Lint the project
+
+```bash
+npm run lint
+```
+
+## Key Implementation Details
+
+### Profile Persistence
+
+`src/reducer/profileReducer.ts` saves profile data in localStorage under:
+
+```
+profileData
+```
+
+### Typed Selectors
+
+Use RootState from store/store.ts:
+
+```ts
+const profile = useSelector((state: RootState) => state.profile);
+```
+
+### State Handling in Profile Page
+
+To avoid React warning:
+"avoid calling setState within useEffect"
+
+The Profile View initializes editable state only once on mount, not inside an effect.
+
+## Troubleshooting
+
+### TypeScript issues
+
+```bash
+npm run build
+```
+
+### Vite dev server port issues
+
+Default Vite port: 5173  
+Update vite.config.ts if needed:
+
+```ts
+server: {
+  port: 5173;
+}
+```
+
+## License
+
+This project currently has no license. Add one if publishing.
+
+---
+
+Last updated: 2025-11-17

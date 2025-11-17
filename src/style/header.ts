@@ -17,6 +17,12 @@ export const HeaderContainer = styled.header`
   }
 `;
 
+export const MenuandAppTitleContainer = styled.div`
+  display: "flex";
+  align-items: "center";
+  gap: 12;
+`;
+
 export const AppTitle = styled.h1`
   font-size: 1.5rem;
   color: var(--text-primary);
@@ -27,9 +33,31 @@ export const AppTitle = styled.h1`
   }
 `;
 
-export const IconGroup=styled.div`
-display:flex;
-justify-content: center;
-align-items: center;
-gap: 10px;
-`
+export const IconGroup = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+`;
+
+export const HamburgerButton = styled.button`
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--foreground);
+  padding: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.04);
+  }
+
+  @media (max-width: 600px) {
+    display: flex;
+    margin-right: 8px;
+  }
+`;

@@ -2,7 +2,11 @@ import { SidebarContainer, SidebarItem } from "@/style/sidebar";
 import React from "react";
 import { useLocation, useNavigate } from "react-router";
 
-const Sidebar: React.FC<NonNullable<unknown>> = () => {
+interface SidebarProps {
+  open?: boolean;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ open = false }) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
@@ -13,7 +17,7 @@ const Sidebar: React.FC<NonNullable<unknown>> = () => {
   ];
 
   return (
-    <SidebarContainer>
+    <SidebarContainer $open={open}>
       {data.map((item) => (
         <SidebarItem
           $active={item.path === pathname}
